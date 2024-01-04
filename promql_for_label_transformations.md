@@ -11,7 +11,7 @@
 
 - **promql**
   ```
-  sum by (service)(label_replace(sum by (pod) (kube_pod_status_phase{cluster=~'$cluster.*',namespace=~'jio-.*', phase='Running', pod=~'$service_name.*'}), "service", "$1", "pod", "([-a-z]+)-.*"))
+  sum by (service)(label_replace(sum by (pod) (kube_pod_status_phase{cluster=~'$cluster.*', phase='Running'}), "service", "$1", "pod", "([-a-z]+)-.*"))
   ```
 - **Explanation**
   
