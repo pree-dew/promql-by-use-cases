@@ -2,4 +2,4 @@
 
 Here issues should to raised to 
 - Request a promql help in understanding any nuiansce of it
-- Help in write a promql as per use case description added in issue
+- Help in writing a promql as per use case description added in issue
