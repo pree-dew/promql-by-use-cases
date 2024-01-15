@@ -62,3 +62,98 @@ Appdex Score will be:
   ```
   score = (600 + 100 + 0 ) / 1000 = 0.7
   ```
+
+**Promql**
+- Threshold For Satisified Users : taking p50 **as** threshold
+  
+  **promql**
+  ```
+  histogram_quantile(0.50, sum by (le) (rate(http_requests_ms_bucket{}[4m])*60))
+  ```
+  
+- Satisfied Users **as**  satisfied_users
+  
+  **promql**
+  
+  ```
+   sum(
+     topk(1, sum by (le) (rate(http_requests_ms_bucket{}[4m]) * 60)
+     and
+     label_value(sum by (le)(http_requests_ms_bucket{}), "le") <  threshold))
+  ```
+
+- Tolerating Users **as** tolerating_users
+  
+  **promql**
+  
+  ```
+  sum(
+     topk(1, sum by (le) (rate(http_requests_ms_bucket{}[4m]) * 60)
+     and
+     label_value(sum by (le)(http_requests_ms_bucket{}), "le") <  4 * threshold))
+
+  -
+
+  sum(
+     topk(1, sum by (le) (rate(http_requests_ms_bucket{}[4m]) * 60)
+     and
+     label_value(sum by (le)(http_requests_ms_bucket{}), "le") <  threshold))
+  
+  ```
+
+- Total Users **as** total_users
+  
+  **promql**
+  
+  ```
+  sum (rate(http_requests_duration_milliseconds_count{}[4m]) * 60))
+  ```  
+
+- Final Promql
+
+  ```
+  Appdex score = ( satisfied_users + ( tolerating_users / 2 ) ) / total_users
+  ```
+  
+**Function Explanations by Promqls**
+```
+label_value(query, label)
+
+label_value(sum by (le)(http_requests_ms_bucket{}), "le") <  threshold
+```
+
+- `label_value` is used to get any label value from a query.
+  Whatever labels are coming as part of output series from query, we can select which label values we are
+  interested in by providing it's label as 2nd argument to **label_value** 
+- Here threshold is latency (p50) so it must be either in seconds or milliseconds. On receiving label value
+  **le** which gives time buckets, we are filtering all buckets which has value less than threshold.
+
+
+```
+query1
+  and
+query2
+
+sum by (le) (rate(http_requests_ms_bucket{}[4m]) * 60)
+     and
+label_value(sum by (le)(http_requests_ms_bucket{}), "le")
+
+```
+
+- `and` operator is used to finding intersection between query1 and query2
+- Here it will give all those timeseries where ouput timeseries of query1 is iƒprontersecting with output
+  timeseries of query2
+
+```
+topk(k_no_of_series, query)
+
+topk(1, sum by (le) (rate(http_requests_ms_bucket{}[4m]) * 60)
+     and
+     label_value(sum by (le)(http_requests_ms_bucket{}), "le") <  threshold)
+```
+
+- `topk` is used to get top k no. of series with highest value from query
+- Here we are finding top 1 value with highest number of requests after performing **and** operation on
+   query1 and query2. It is basically finding the bucket with highest number of requests with `le` less than 
+   threshold.
+
