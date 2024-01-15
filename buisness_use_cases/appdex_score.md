@@ -1,66 +1,62 @@
 **Use Case**
 
-How to find Appdex score of my HTTP application?
+How to find the Apdex score of my HTTP application?
 
 **Explanation**
 
-Appdex stands for Application Performance Index. It's a measure of application performance with respect
-to user satisfaction. 
+Apdex stands for Application Performance Index. It is a measure of application performance with respect to user satisfaction.
 
-**Why Appdex score is a better measure**
+### Why Apdex score is a better measure of application performance?
 
-Definition of application performance varies as per different personas. Foe engineer it's response time, 
-for SRE it's uptime, for product it's user retention on product. These definitions are varying as per the 
-roles or priorities of these roles. In such cases if we have to find a uniform way to measure application
-performance across multiple services, applications, teams then how to do that.
-**Appdex** solves that problem by quantifying **user experience** to a number, as at the end for any buisness
+The definition of application performance varies as per different personas.
+For the engineer, it's response time; for SRE, it's uptime; for the product manager, it is user retention on the product.
+These definitions vary as per the roles or priorities of each role. In such cases, we have to find a uniform way to measure the application
+performance across multiple services, applications, and teams. How to do that?
+
+**Apdex** solves that problem by quantifying **user experience** to a number, as at the end of any business
 all roles are trying to find user experience by using different measurements.
 
-To define appdex in terms of user experiences, we take three different category of users.
-1. **Satisfied** - One who enjoys the application experience without any hicups or slowness.
-2. **Tolerating** - One who face some lag or slowness but still keep using the application without complaining
-3. **Frustrated** - One who is abandones the application due to lag or slowness.
+To define Apdex in terms of user experiences, we take three different categories of users.
+1. **Satisfied** - One who enjoys the application experience without hiccups or slowness.
+2. **Tolerating** - One who faces a lag or slowness but keeps using the application without complaining.
+3. **Frustrated** - One who abandoned the application due to lag or slowness.
 
-Appdex measures satisfied, tolerating and frustated users on the basis of application response time.
+Based on application response time, the Apdex score measures satisfied, tolerating, and frustrated users.
 
-**How to find Appdex score for my application**
+### How to find an Apdex score for an HTTP application?
 
-- Define a satisified user response time threshold, for example, a happy customer whould get response with
-        in 1 sec.
-        
-- 4 times the satisified user threshold defines the threshold for tolerating users. So by using above example
-        anything time from 1 sec to 4 sec defines the tolerating user response time. Anything above that defines
-        frustated user response time.
-        
-- Find appdex user by:
+- Define a satisfied user response time threshold, for example,
+a happy customer would get a response within 1 second.
 
-  ```        
-  Appdex score = (
-                    No. of satisfied user +
-                    (0.5) * No. of tolerating user
-                     + 0 * No. of frustated user
+- 4 times the satisfied user threshold defines the threshold for tolerating users. So, using the above example, anything from 1 second to 4 seconds defines the tolerating user response time. Anything above that defines frustrated user response time.
+
+- Find the Apdex score by:
+
+  ```text
+  Apdex score = (
+                    No. of satisfied users +
+                    (0.5) * No. of tolerating users
+                     + 0 * No. of frustrated users
                 ) / Total users
-  ``` 
+  ```
 
-**Example for Appdex maths**
-
-For any application, no of users can be quantifies by no. of requests. 
+For any application, the number of users can be quantified by the number of requests, which is throughput.
 
 Assumptions:
-- Application received a throughput of 1000 requests.
-- Satisfied user thrreshold is 1 sec
-- No. of requests finished within 1 sec = 600
-- No. of requests finished within 1 to 4 sec = 200
-- No. of request finished greater than 4 sec = 200
+- Application received 1000 requests in total.
+- The satisfied user threshold is 1 second.
+- No. of requests finished within 1 second = 600
+- No. of requests finished within 1 to 4 seconds = 200
+- No. of requests finished greater than 4 seconds = 200
 
-Appdex Score will be:
+Apdex Score will be:
 
-- Satisified users : (600 * 1 = 600)
+- Satisfied users : (600 * 1 = 600)
 - Tolerating users : (200 * 0.5 = 100)
-- Frustating users : (200 * 0 = 0)
-  
+- Frustrating users : (200 * 0 = 0)
+
   ```
-  score = (600 + 100 + 0 ) / 1000 = 0.7
+  Apdex score = (600 + 100 + 0 ) / 1000 = 0.7
   ```
 
 **Promql**
