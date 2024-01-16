@@ -13,8 +13,9 @@ max_over_time (
 
 **Explanation**
 
-- `rate` will give us change in metric per sec calculated over 1m. Multiplying by 60 will
-   give this change in metric per min.
+- `rate` will give us change in metric per sec calculated over 4 times of scrape_interval. Multiplying by 60 will
+   give this change in metric per min. Further explanation: 
+   https://github.com/pree-dew/promql-by-use-cases/blob/main/promql_for_counters.md#using-rate-on-counters
 -  Aggregated the metric by label1 and label2 for each min. using sum by over 1min data receivied from rate.
 -  `max_over_time` find the series with maximum value over a duration of time specified. Here, it will take
     **xh** of data and find maximum from it.
