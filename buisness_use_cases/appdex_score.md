@@ -137,7 +137,7 @@ label_value(sum by (le)(http_requests_ms_bucket{}), "le")
 ```
 
 - `and` operator is used to finding intersection between query1 and query2
-- Here it will give all those timeseries where ouput timeseries of query1 is iƒprontersecting with output
+- Here it will give all those timeseries where ouput timeseries of query1 is intersecting with output
   timeseries of query2
 
 ```
@@ -152,4 +152,10 @@ topk(1, sum by (le) (rate(http_requests_ms_bucket{}[4m]) * 60)
 - Here we are finding top 1 value with highest number of requests after performing **and** operation on
    query1 and query2. It is basically finding the bucket with highest number of requests with `le` less than 
    threshold.
+
+```
+rate(metric{}[scrape_interval * 4])
+```
+Refer: https://github.com/pree-dew/promql-by-use-cases/blob/main/promql_for_counters.md#using-rate-on-counters
+
 
