@@ -73,7 +73,7 @@ There are nuansces when it comes to understanding how **rate** and **increase** 
 
 
 ---
-
+**WIP**
 It becomes tricky to understand the behaviour of these function because most of the time scrape interval doesn't align with the boundries of our queries. 
 
 For example:
