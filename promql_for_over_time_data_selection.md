@@ -84,6 +84,7 @@ avg_over_time (
 <img width="1358" alt="Screenshot 2024-06-16 at 4 33 29 PM" src="https://github.com/pree-dew/promql-by-use-cases/assets/132843509/c397715c-23ca-46c3-80ff-0373d95aef57">
 
 Yellow -> Original metric
+
 Green -> Average of all point received in past 1hour
 
 Mathematically, if we want to find avg over 5mins from 10:00 am to 10:05 am
@@ -138,6 +139,7 @@ first_over_time (
 
 
 Yellow -> Original metric
+
 Green -> First point received in past 1 hour.
 
 Image shows the point at `15:51` aligns with green at the end showing same value
@@ -195,6 +197,7 @@ last_over_time (
 
 
 Yellow -> Original metric
+
 Green -> Last point received in past 1 hour.
 
 Image shows the last value is going to be the actual metric value received.
