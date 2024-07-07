@@ -1,8 +1,8 @@
 ### Set Operations ###
 
 Sometimes we have to filter or merge a set of timeseries on the basis of other set, set operations are used exactly for that. Few important points about these operators:
- 1. It works only on instant vectors.
- 2. It is used for many to many match matching i.e. any series is allowed to match multiple series on the other side. This is the reason that `group` functions are not part
+ 1. It works only on `instant vectors`.
+ 2. It is used for` many to many matching` i.e. any series is allowed to match multiple series on the other side. This is the reason that `group` functions are not part
    of this set like other binary operators.
   
 
