@@ -14,9 +14,9 @@ Let's deep dive into each of them.
 
 2. ### Scalars ###
 
-  Scalars are just number without any information of label dimensions. It is used in functions like:
-  `topk(4,` or `histogram_quantile(0.9` etc. Any valid 64 bit floating point value is considered as scalar.
-  Note: Infinity or Nans are special float64 values , so also considered as scalars
+   Scalars are just number without any information of label dimensions. It is used in functions like:
+   `topk(4,` or `histogram_quantile(0.9` etc. Any valid 64 bit floating point value is considered as scalar.
+   Note: Infinity or Nans are special float64 values , so also considered as scalars
 
 3. ### Instant Vector ###
 
