@@ -40,7 +40,7 @@ How it works:
 |        missing                    |   or     |  { status="500", method="GET"}  6 |  { status="500", method="GET"}  6 |   
 
 
-#### 3. Set differences: `uless` operator #### 
+#### 3. Set differences: `unless` operator #### 
 
 It computes the set differences of 2 instant vectors. The operator only returns those series from the left-hand side that do not have matching series on the right-hand side. 
 The sample value will always be taken from the left-hand side.
