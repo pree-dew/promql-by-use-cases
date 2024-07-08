@@ -31,9 +31,9 @@ Let's deep dive into each of them.
    Example:
 
     ```
-    demo_api_http_requests_in_progress{instance="demo-service-0:10000", job="demo"}     1 @1720340151
-    demo_api_http_requests_in_progress{instance="demo-service-1:10001", job="demo"}     1 @1720340151
-    demo_api_http_requests_in_progress{instance="demo-service-2:10002", job="demo"}     2 @1720340151
+    demo_api_http_requests{instance="demo-service-0:10000", job="demo"}     1 @1720340151
+    demo_api_http_requests{instance="demo-service-1:10001", job="demo"}     1 @1720340151
+    demo_api_http_requests{instance="demo-service-2:10002", job="demo"}     2 @1720340151
     ```
 
    Basically, each time series has only 1 sample and all timeseries samples are reported at single time.
